@@ -1,0 +1,158 @@
+cat /proc/cpuinfo 
+cat /proc/cpuinfo | grep vmx
+lsmod | grep kvm
+vi /etc/modprobe.d/kvm.conf
+ls /lib/modules/3.10.0-1127.19.1.el7.x86_64/kernel/arch/x86/kvm/
+lscpu | grep -i Virtu
+uim repolist
+yum repolist
+yum install qemu-kvm qemu-img virt-manager libvirt libvirt-python libguestfs-tools libvirt-client virt-install virt-viewer bridge-utils libvirt-daemon-kvm qemu-system-x86 -y
+qemu-img -h
+qemu-img -v
+qemu-img --version
+qemu-img create -f qcow2 quickstart.qcow 5G
+ls -la
+ls -lah
+qemu-img create -f qcow2 -o preallocation=full ubuntu.qcow 9G
+ls -lah
+df -h
+cp quickstart.qcow quickstart2.qcow
+ls -lah
+rm quickstart2.qcow
+df -h
+cat /proc/parrt
+cat /proc/partitions 
+reboot
+cat /proc/partitions 
+pvcreate /dev/sdb
+vgcreate vgKvm /dev/sdb
+lvcreate -l 100%FREE -n lvKvm /dev/vgKvm
+lvs
+mkfs.ext4 /dev/vgKvm/lvKvm 
+df -h
+mkdir /kvm/disks
+mkdir /kvm/disks -p
+mount /dev/vgKvm/lvKvm /kvm/disks/
+df -h
+mv quickstart.qcow ubuntu.qcow /kvm/disks/
+ls -la /kvm/disks/
+df -h
+wget https://sourceforge.net/projects/bodhilinux/files/6.0.0/bodhi-6.0.0-64.iso/download -O /var/lib/libvirt/images/bodhi-6.0.0-64.iso --no-check-certificate
+virt-install --cdrom=/var/lib/libvirt/images/bodhi-6.0.0-64.iso --disk=/kvm/disks/quickstart.qcow,format=qcow2 --name MyFirstKvmGuest \
+virt-install --cdrom=/var/lib/libvirt/images/bodhi-6.0.0-64.iso --disk=/kvm/disks/quickstart.qcow,format=qcow2 --name=MyFirstKvmGuest --ram=512 --connect qemu:///system
+ls -la /var/lib/libvirt/images/
+virt-install --cdrom=/var/lib/libvirt/images/ubuntu-20.04.3-desktop-amd64.iso --disk=/kvm/disks/quickstart.qcow,format=qcow2 --name=MyFirstKvmGuest --ram=512 --connect qemu:///system
+virsh list
+virsh shutdown MyFirstKvmGuest 
+virsh list
+virsh destroy MyFirstKvmGuest 
+virsh list
+virsh list --all
+virsh undefine MyFirstKvmGuest 
+ls -la /kvm/disks/
+virt-install --cdrom=/var/lib/libvirt/images/ubuntu-20.04.3-desktop-amd64.iso --disk=/kvm/disks/quickstart.qcow,format=qcow2 --name=MyFirstKvmGuest --ram=512 --connect qemu:///system
+wget http://www.tinycorelinux.net/12.x/x86/release/TinyCore-current.iso -o /var/lib/libvirt/images/TinyCore-current.iso
+ls -la /var/lib/libvirt/images/
+ls -lah /var/lib/libvirt/images/
+wget http://www.tinycorelinux.net/12.x/x86/release/TinyCore-current.iso -
+wget http://www.tinycorelinux.net/12.x/x86/release/TinyCore-current.iso 
+ls -lah TinyCore-current.iso.2
+mv TinyCore-current.iso.2 /var/lib/libvirt/images/TinyCore-current.iso 
+ls -lah /var/lib/libvirt/images/
+virt-install --cdrom=/var/lib/libvirt/images/TinyCore-current.iso --disk=/kvm/disks/quickstart.qcow,format=qcow2 --name=MyFirstKvmGuest --ram=512 --connect qemu:///system
+virsh list
+virsh --help
+virsh -c qemu:///system list
+virsh list
+ip a 
+virsh --connect qemu+ssh://root@192.168.1.81/system list
+virsh --connect qemu+ssh://root@192.168.1.81/system destroy MyFirstKvmGuest
+virsh list --all
+virt-manager --help
+vi /etc/libvirt/libvirt.conf 
+virsh list --all
+virsh destroy MyFirstKvmGuest 
+wget https://github.com/serewicz/images-462/raw/master/TCLF.tar.bz -O TCLF.tar.bz
+tar -xjf TCLF.tar.bz 
+ls -la
+mv /kvm/disks/
+mv TC-LF.qcow2 /kvm/disks/
+ls -lah  /kvm/disks/
+qemu-system-x86_64 -enable-kvm -name TestLinux -m 1G -drive format=raw,file=/kvm/disks/TC-LF.qcow2 -vnc 0.0.0.0:4 -chardev stdio,id=mon0 -mon chardev=mon0,mode=readline
+virsh list --all
+qemu-system-x86_64 --help
+virsh list --all
+virsh list -
+virsh list 
+virsh list --all
+virsh dumpxml MyFirstKvmGuest
+virsh start MyFirstKvmGuest 
+virsh list 
+virsh destroy MyFirstKvmGuest 
+virsh list 
+virsh list --all
+virsh dumpxml MyFirstKvmGuest > /tmp/myTestDomain.xml
+vi /tmp/myTestDomain.xml
+virsh undefine MyFirstKvmGuest 
+virsh define /tmp/myTestDomain.xml
+virsh list --all
+virsh start MySecondKvmGuest 
+virsh destroy MySecondKvmGuest | grep -i vnc
+virsh destroy MySecondKvmGuest | grep -i disk
+virsh list --all
+virsh start MySecondKvmGuest 
+virsh dumpxml MySecondKvmGuest | grep -i vnc
+virsh dumpxml MySecondKvmGuest | grep -i disk
+virsh dumpxml MySecondKvmGuest | grep -i disk -n
+wget http://distro.ibiblio.org/damnsmall/current/current.iso -o /var/lib/libvirt/images/
+wget http://distro.ibiblio.org/damnsmall/current/current.iso -o /var/lib/libvirt/images/current.iso
+ls -la /var/lib/libvirt/images/
+ls -lha /var/lib/libvirt/images/
+wget http://distro.ibiblio.org/damnsmall/current/current.iso
+mv current.iso.1 /var/lib/libvirt/images/current.iso 
+ls -lah /var/lib/libvirt/images/current.iso
+qemu-img create -f qcow2 /var/lib/libvirt/images/smallVM.qcow2 4G
+virt-install -- cdrom=/var/lib/libvirt/images/current.iso \
+virt-install --cdrom=/var/lib/libvirt/images/current.iso --disk=/var/lib/libvirt/images/smallVM.qcow2,format=qcow2 --name=smallVM --ram=512
+virsh --help
+virsh edit smallVM 
+virsh reset smallVM 
+virsh edit smallVM 
+qemu-img info /var/lib/libvirt/images/smallVM.qcow2 
+qemu-img info /kvm/disks/ubuntu.qcow 
+qemu-img check /kvm/disks/ubuntu.qcow 
+qemu-img check /var/lib/libvirt/images/smallVM.qcow2
+history
+history | tail
+history | tail | cut -c 7-
+history | tail | cut -c 8-
+history | cut -c 8- > /tmp/day1.txt
+cd tmp
+cd /tmp
+git clone https://github.com/mariano-italiano/lfs462_repo.git
+ls
+cd lfs462_repo/
+ls- la
+ls -la
+cd bash_history/
+mv /tmp/day1.txt .
+git status
+git add day1.txt
+git commit -m "Adding day1 history file"
+git config --global user.email "markuj5@gmail.com"
+git config --global user.name "Marcin Kujawski"
+git commit -m "Adding day1 history file"
+git push
+git config --global core.hookspath 'hooks' && git config --global credential.helper store
+ls -la
+history | head -n +865| cut -c 8- | less
+history | tail -n +865| cut -c 8- | less
+history | tail -n +860| cut -c 8- | less
+history | tail -n +820| cut -c 8- | less
+history | tail -n +843| cut -c 8- | less
+history | tail -n +843| cut -c 8- | > day1.txt 
+git status
+git add day1.txt
+git commit -m "Update file"
+git push
+history | tail -n +843| cut -c 8-  > day1.txt 
