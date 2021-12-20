@@ -1,3 +1,8 @@
+ls
+wget https://releases.ubuntu.com/20.04.3/ubuntu-20.04.3-desktop-amd64.iso?_ga=2.267984654.1855097896.1639985507-684646028.1637051333 -O ubuntu-20.04.3-desktop-amd64.iso
+hostnamectl set-hostname centos7-kvm
+grep -i kvm /boot/config-3.10.0-1127.19.1.el7.x86_64 
+uname -r
 cat /proc/cpuinfo 
 cat /proc/cpuinfo | grep vmx
 lsmod | grep kvm
@@ -156,3 +161,24 @@ git add day1.txt
 git commit -m "Update file"
 git push
 history | tail -n +843| cut -c 8-  > day1.txt 
+git add day1.txt
+git commit -m "Update file"
+git push
+history | sed 843d| cut -c 8- | less
+history | sed 863d| cut -c 8- | less
+history | sed 1,863d| cut -c 8- | less
+history | sed 1,843d| cut -c 8- | less
+history | sed 1,833d| cut -c 8- | less
+history | sed 1,823d| cut -c 8- | less
+history | sed 1,827d| cut -c 8- | less
+history | sed 1,825d| cut -c 8- | less
+history | sed 1,823d| cut -c 8- | less
+history | sed 1,825d| cut -c 8- | less
+history | sed 1,824d| cut -c 8- | less
+history | sed 1,823d| cut -c 8- | less
+history | sed 1,821d| cut -c 8- | less
+history | sed 1,818d| cut -c 8- | less
+history | sed 1,819d| cut -c 8- | less
+history | sed 1,818d| cut -c 8- | less
+history | sed 1,816d| cut -c 8- | less
+history | sed 1,816d| cut -c 8- > day1.txt 
