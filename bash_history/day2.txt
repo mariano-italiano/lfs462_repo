@@ -1,0 +1,358 @@
+ls -la /kvm/disks/
+virsh domblklist ubuntu20
+virsh snapshot-create-as --domain ubuntu20 --diskspec hda,file=/kvm/disks/snap01                                                                    ,snapshot=external --disk-only --atomic
+ls -la /kvm/disks/
+virsh snapshot-list ubuntu20
+virsh start ubuntu20
+virsh list --all
+virt-diff -a /kvm/disks/ubuntu20.qcow2 -A /kvm/disks/snap01
+virt-diff --help
+virt-diff -a /kvm/disks/ubuntu20.qcow2 -A /kvm/disks/snap01 -h
+virsh snapshot-list ubuntu20
+ls -la /kvm/disks/
+virsh status --list
+virsh list --all
+virsh start ubuntu20
+virsh blockcommit ubuntu20 hda --active --verbose --pivot
+virsh blockcommit -h
+virsh blockcommit --help
+virsh destroy ubuntu20
+virsh blockcommit ubuntu20 hda --active --verbose --pivot
+virsh snapshot-list ubuntu20
+virsh snapshot-delete --domain ubuntu20 --snapshotname 1640074068
+virsh list --all
+guestfish --rw -a /kvm/disks/ubuntu20.qcow2
+virsh start ubuntu20
+ls -la /kvm/disks/
+virsh destroy ubuntu20
+virsh edit ubuntu20
+virsh start ubuntu20
+ssh 192.168.122.150
+virsh console ubuntu20
+ssh 192.168.122.150
+virsh destroy ubuntu20
+virt-customize -h
+virt-customize --help
+virt-customize -a /kvm/disks/ubuntu20.qcow2 --root-password password:StrongPassw                                                                    ord123
+man virt-customize
+virsh start ubuntu20
+ping 192.168.122.150
+ssh 192.168.122.150
+virt-customize -a /kvm/disks/ubuntu20.qcow2 --root-password password:student
+ virt-customize -a /kvm/disks/ubuntu20.qcow2 --hostname guest-kvm
+virsh destroy ubuntu20
+cd /kvm/disks/
+ls -la
+rm -rf ubuntu20.qcow2
+mv ubuntu20-backup.qcow2 ubuntu20.qcow2
+virsh edit ubuntu20
+virsh list --all
+cd
+ virt-customize -a /kvm/disks/ubuntu20.qcow2 --hostname guest-kvm
+virt-customize -a /kvm/disks/ubuntu20.qcow2 --root-password password:student
+ virt-customize -a /kvm/disks/ubuntu20.qcow2 --timezone Europe/London
+virsh start ubuntu
+virsh start ubuntu`
+virsh start ubuntu20
+virsh list --all
+rsync -avhW --progress /kvm/disks/ubuntu20.qcow2 /kvm/disks/ubuntu20-backup.qcow                                                                    2
+virt-edit -d ubuntu20 /etc/hosts
+virt-filesystems --long --parts --blkdevs -h -a /kvm/disks/ubuntu20.qcow2
+virsh domblklist ubuntu20
+df -h
+qemu-img create -f qcow2 /kvm/disks/ubuntuExtended.qcow2 11G
+virt-resize --expand /kvm/disks/ubuntu20.qcow2 /kvm/disks/ubuntuExtended.qcow2
+virt-resize -v -x --expand /kvm/disks/ubuntu20.qcow2 /kvm/disks/ubuntuExtended.q                                                                    cow2
+cd /kvm/disks/
+ls
+ls -la
+rm -fr ubuntuExtended.qcow2
+qemu-img create -f qcow2 -o preallocation=full /kvm/disks/ubuntu20Extended.qcow2                                                                     11G
+virsh list --all
+virt-resize  --expand /kvm/disks/ubuntu20.qcow2 /kvm/disks/ubuntu20Extended.qcow                                                                    2
+virt-resize -h
+virt-resize  --expand /dev/sda5 /kvm/disks/ubuntu20.qcow2 /kvm/disks/ubuntu20Ext                                                                    ended.qcow2
+virt-filesystems --partitions --long -a
+/kvm/disks/ubuntu20.qcow2
+virt-filesystems --long --parts --blkdevs -h -a /kvm/disks/ubuntu20.qcow2
+virt-resize  --expand /dev/sda5 /kvm/disks/ubuntu20.qcow2 /kvm/disks/ubuntu20Ext                                                                    ended.qcow2
+virt-df -h -a /dev/vgubuntu/root
+virsh start ubuntu20
+virt-resize  --expand /dev/vda5 /kvm/disks/ubuntu20.qcow2 /kvm/disks/ubuntu20Ext                                                                    ended.qcow2
+qemu-img create -f qcow2 -o preallocation=metadata bootDisk.qcow2 1G
+irt-resize --expand /dev/sda5 --LV-expand /dev/vgubuntu/root /kvm/disks/ubuntu20                                                                    .qcow2 /kvm/disks/ubuntu20Extended.qcow2
+virt-resize --expand /dev/sda5 --LV-expand /dev/vgubuntu/root /kvm/disks/ubuntu2                                                                    0.qcow2 /kvm/disks/ubuntu20Extended.qcow2
+virt-resize --resize /dev/sda5=+1G --expand /kvm/disks/ubuntu20.qcow2 /kvm/disks                                                                    /ubuntu20Extended.qcow2
+virt-resize --resize /dev/sda5=+1G --expand /dev/sda5 /kvm/disks/ubuntu20.qcow2                                                                     /kvm/disks/ubuntu20Extended.qcow2
+virt-resize --resize /dev/sda5=+1G --expand /dev/vda5 /kvm/disks/ubuntu20.qcow2                                                                     /kvm/disks/ubuntu20Extended.qcow2
+virt-resize --expand /dev/sda1 /kvm/disks/ubuntu20.qcow2 /kvm/disks/ubuntu20Exte                                                                    nded.qcow2
+ls -lah /kvm/disks/
+virsh dumpxml iubunt
+virsh dumpxml ubuntu20 --[B
+virsh edit ubuntu20
+virt-filesystems --long --parts --blkdevs -h -a /kvm/disks/ubuntu20Extended.qcow                                                                    2
+virsh start ubuntu
+virsh start ubuntu20
+ssh 192.168.122.150
+cd /kvm/disks/
+ls
+ rm ubuntu20Extended.qcow2
+qemu-img create -f qcow2 -o preallocation=full /kvm/disks/ubuntu20Extended.qcow2                                                                     11G
+virt-resize --expand /dev/sda2 /kvm/disks/ubuntu20.qcow2 /kvm/disks/ubuntu20Exte                                                                    nded.qcow2
+virsh start ubuntu20
+virt-resize --help
+rm ubuntu20Extended.qcow2
+virt-resize --resize /dev/sda5 --expand /dev/sda2 /kvm/disks/ubuntu20.qcow2 /kvm                                                                    /disks/ubuntu20Extended.qcow2
+qemu-img create -f qcow2 -o preallocation=full /kvm/disks/ubuntu20Extended.qcow2                                                                     11G
+virt-resize --expand /dev/sda2 --LV-expand /dev/vgubuntu/root  /kvm/disks/ubuntu                                                                    20.qcow2 /kvm/disks/ubuntu20Extended.qcow2
+virsh start ubuntu
+virsh start ubuntu20
+virsh destroy ubuntu20
+rm /kvm/disks/ubuntu20Extended.qcow2
+qemu-img create -f qcow2 -o preallocation=full /kvm/disks/ubuntu20Extended.qcow2                                                                     11G
+virt-resize --resize /dev/sda5 --expand /dev/sda2 /kvm/disks/ubuntu20.qcow2 /kvm                                                                    /disks/ubuntu20Extended.qcow2
+virt-resize --resize /dev/sda5=+2G --expand /dev/sda2 /kvm/disks/ubuntu20.qcow2                                                                     /kvm/disks/ubuntu20Extended.qcow2
+virt-resize --resize /dev/vda5=+2G --expand /dev/sda2 /kvm/disks/ubuntu20.qcow2                                                                     /kvm/disks/ubuntu20Extended.qcow2
+virt-resize --resize /dev/sda2=+2G --expand /dev/sda2 /kvm/disks/ubuntu20.qcow2                                                                     /kvm/disks/ubuntu20Extended.qcow2
+virt-inspector -a /kvm/disks/ubuntu20.qcow2
+virt-rescue --help
+cd
+ldd qemu-system-x86_64
+which qemu-system-x86_64
+ldd /usr/bin/qemu-system-x86_64
+ldd /usr/bin/qemu-system-x86_64 | grep -i usb
+yum install -y libusb-devel
+lsusb
+lsusb -t
+clear
+vi /etc/libvirt/libvirtd.conf
+cd /var/lib/libvirt/
+ls -la
+ls -la boot/
+ls -la dnsmasq/
+ls -la filesystems/
+ls -la lxc
+ls -la
+ls -la qemu/
+ls -la
+ls -la swtpm/
+virsh domxml-from-native --help
+vi libvirt-test-qemu.inc
+which qemu-system-x86_64
+vi libvirt-test-qemu.inc
+virsh domxml-from-native qemu-args libvirt-test-qemu.inc &> mojaDomena.xml
+vi mojaDomena.xml
+virsh domxml-from-native qemu-argv libvirt-test-qemu.inc &> mojaDomena.xml
+vi mojaDomena.xml
+vi qemuConfig.inc
+virsh domxml-from-native qemu-argv qemuConfig.inc &> mojaDomena2.xml
+vi mojaDomena2.xml
+vi qemuConfig.inc
+virsh domxml-from-native qemu-argv qemuConfig.inc &> mojaDomena2.xml
+vi mojaDomena2.xml
+vi qemuConfig.inc
+virsh domxml-from-native qemu-argv qemuConfig.inc &> mojaDomena2.xml
+vi mojaDomena2.xml
+vi qemuConfig.inc
+virsh domxml-from-native qemu-argv qemuConfig.inc &> mojaDomena2.xml
+vi mojaDomena2.xml
+vi qemuConfig.inc
+virsh domxml-from-native qemu-argv qemuConfig.inc &> mojaDomena2.xml
+vi mojaDomena2.xml
+virsh define mojaDomena2.xml
+virsh list --all
+cd images
+df -h
+wget https://download.fedoraproject.org/pub/fedora/linux/releases/35/Server/x86_                                                                    64/iso/Fedora-Server-dvd-x86_64-35-1.2.iso
+ls -la
+rm Fedora-Server-dvd-x86_64-35-1.2.iso
+wget http://ftp.icm.edu.pl/pub/Linux/dist/archlinux/iso/2021.12.01/archlinux-202                                                                    1.12.01-x86_64.iso
+cd /kvm/disks/
+ls -la
+virsh list --al
+virsh list --all
+virsh undefine smallVM
+virsh undefine secondVM
+virsh dumpxml ubuntu20 | grep -i source
+virsh edit ubuntu20
+ls -la
+rm ubuntu20Extended.qcow2
+ls -lah
+rm snap01
+rm bootDisk.qcow2
+df -h
+ls -la
+ls /var/lib/libvirt/images/
+ls /var/lib/libvirt/images/ -la
+qemu-img create -f qcow2 -o preallocation=full /kvm/disks/archLinux.qcow2 6G
+virt-install --virt-type=kvm --name archLinux --ram 1024 --vcpus=2 --cdrom=/var/                                                                    lib/libvirt/images/archlinux-2021.12.01-x86_64.iso -network=bridge=virbr0,model=                                                                    virtio --console pty,target_type=virtio --disk path=/kvm/disks/archLinux.qcow2,b                                                                    us=virtio,format=qcow2 --graphics vnc,listen=0.0.0.0:3
+virt-install --virt-type=kvm --name archLinux --ram 1024 --vcpus=2 --cdrom=/var/                                                                    lib/libvirt/images/archlinux-2021.12.01-x86_64.iso --network=bridge=virbr0,model                                                                    =virtio --console pty,target_type=virtio --disk path=/kvm/disks/archLinux.qcow2,                                                                    bus=virtio,format=qcow2 --graphics vnc,listen=0.0.0.0:3
+virt-install --virt-type=kvm --name archLinux --ram 1024 --vcpus=2 --cdrom=/var/                                                                    lib/libvirt/images/archlinux-2021.12.01-x86_64.iso --network=bridge=virbr0,model                                                                    =virtio --console pty,target_type=virtio --disk path=/kvm/disks/archLinux.qcow2,                                                                    bus=virtio,format=qcow2 --graphics vnc,listen=0.0.0.0
+clear
+virsh list --all
+virt-install --name ubuntu --ram 1024 --disk path=/var/lib/libvirt/images/ubuntu                                                                    .qcow2,size=9,bus=virtio,format=qcow2 --vcpus 2 --os-type linux --os-variant ubu                                                                    ntu20.04 --network=bridge=virbr0,model=virtio --graphics none --console pty,targ                                                                    et_type=serial --location 'http://gb.archive.ubuntu.com/ubuntu/dists/xenial/main                                                                    /installer-amd64/' --extra-args 'console=ttyS0,115200n8 serial'  --force --debug
+df -
+df -h
+virt-install --name ubuntu --ram 1024 --disk path=/var/lib/libvirt/images/ubuntu                                                                    .qcow2,size=5,bus=virtio,format=qcow2 --vcpus 2 --os-type linux --os-variant ubu                                                                    ntu20.04 --network=bridge=virbr0,model=virtio --graphics none --console pty,targ                                                                    et_type=serial --location 'http://gb.archive.ubuntu.com/ubuntu/dists/xenial/main                                                                    /installer-amd64/' --extra-args 'console=ttyS0,115200n8 serial'  --force --debug
+virt-install --name ubuntu --ram 1024 --disk path=/var/lib/libvirt/images/ubuntu                                                                    .qcow2,size=5,bus=virtio,format=qcow2 --vcpus 2 --os-type linux --os-variant ubu                                                                    ntu18.04 --network=bridge=virbr0,model=virtio --graphics none --console pty,targ                                                                    et_type=serial --location 'http://gb.archive.ubuntu.com/ubuntu/dists/xenial/main                                                                    /installer-amd64/' --extra-args 'console=ttyS0,115200n8 serial'  --force --debug
+virsh list --all
+virsh destroy ubuntu
+virsh undefine ubuntu
+virsh list --all
+virsh autostart ubuntu20
+virsh autostart --disable ubuntu20
+virt-builder --list
+virt-builder debian-11 --size=9G --format qcow2 -o /kvm/disks/debian11.qcow2 --h                                                                    ostname deb-guest --network --timezone Europe/Warsaw --edit '/etc/default/grub:                                                                     s/^GRUB_CMDLINE_LINUX_DEFAULT=.*/GRUB_CMDLINE_LINUX_DEFAULT="console=tty0 consol                                                                    e=ttyS0,115200n8"/' --run-command update-grub
+resize2fs -v
+resize2fs --v
+rpm -qa | grep -i resize2fs
+e2fsck -v
+rpm -qa | grep -i e2fsck
+yum list | grep -i e2fsck
+yum provides e2fsck
+rpm -qa | grep -i e2fsprogs
+yum install e2fsprogs e2fsprogs-libs
+ls -la /kvm/disks/
+virt-builder debian-11 --size=9G --format qcow2 -o /kvm/disks/debian11.qcow2 --h                                                                    ostname deb-guest --network --timezone Europe/Warsaw --edit '/etc/default/grub:                                                                     s/^GRUB_CMDLINE_LINUX_DEFAULT=.*/GRUB_CMDLINE_LINUX_DEFAULT="console=tty0 consol                                                                    e=ttyS0,115200n8"/' --run-command update-grub
+virt-builder ubuntu-20.04 --size=6G --format qcow2 -o /var/lib/libvirt/images/ub                                                                    untu20-04-disk01.qcow2 --hostname ubuntu20 --network --timezone Europe/Warsaw --                                                                    edit '/etc/default/grub:
+s/^GRUB_CMDLINE_LINUX_DEFAULT=.*/GRUB_CMDLINE_LINUX_DEFAULT="console=tty0 consol                                                                    e=ttyS0,115200n8"/' --run-command update-grub
+virsh list --all
+df -h
+virt-install --import --name newUbuntu --ram 2048 --vcpu 2 --disk path=/var/lib/                                                                    libvirt/images/ubuntu20-04-disk01.qcow2 --network=bridge=virbr0,model=virtio --n                                                                    oautoconsole
+virsh list --all
+virsh console newUbuntu
+virsh edit newUbuntu
+virsh start ubuntu20
+virsh console ubuntu20
+virsh edit newUbuntu
+virsh destroy ubuntu20
+virsh edit ubuntu20
+virsh edit newUbuntu
+virsh edit ubuntu20
+virsh start ubuntu20
+virsh console ubuntu20
+ip a s
+virsh console ubuntu20
+virsh list --all
+guestfish --rw -a /kvm/disks/ubuntu20.qcow2
+virt-edit -a /kvm/disks/ubuntu20.qcow2 /etc/default/grub
+virsh destroy ubuntu20
+virsh start ubuntu20
+virsh console ubuntu20
+virsh list --all
+virsh destroy newUbuntu
+virt-clone --original newUbuntu --name ubuntuCloned --file /kvm/disks/ubuntu20.q                                                                    cow2
+virt-clone --original newUbuntu --name ubuntuCloned --file /kvm/disks/ubuntuClon                                                                    ed.qcow2
+virsh list --all
+virt-sysprep ubuntuCloned --hostname ubuntu-cloned --enable user-account,ssh-hos                                                                    tkeys,net-hostname,net-hwaddr,machine-id --keep-user-accounts root
+virt-sysprep --domain ubuntuCloned --hostname ubuntu-cloned --enable user-accoun                                                                    t,ssh-hostkeys,net-hostname,net-hwaddr,machine-id --keep-user-accounts root
+virsh start ubuntuCloned
+virsh edit ubuntuCloned
+virt-customize --help
+virt-sysprep --help
+virt-customize -d ubuntuCloned --hostname newUbuntuCloned
+virsh start ubuntu20
+virsh start ubuntuCloned
+free -m
+ls -la /kvm/disks/
+virt-customize -d ubuntuCloned --hostname ubuntuCloned
+ls -la /kvm/disks/
+virsh list --all
+virsh destroy ubuntu20
+virsh start ubuntuCloned
+virsh console ubuntuCloned
+virsh nodeinfo
+virsh memtune --help
+virsh dumpxml ubuntu20
+virsh dumpxml ubuntu20 | grep <memory unit
+virsh dumpxml ubuntu20 | grep "memory unit"
+virsh dumpxml ubuntuCloned| grep "memory unit"
+virsh list --all
+virsh memtune --domain ubuntu20 --config --hard-limit 1536000
+virsh dumpxml ubuntu20 | grep "memory unit"
+virsh dumpxml ubuntu20
+virsh memtune --domain ubuntuCloned --live --hard-limit 1536000
+virsh memtune --domain ubuntuCloned --live --soft-limit 10
+virsh dumpxml ubuntuCloned | grep -i mem
+virsh dumpxml ubuntuCloned
+virsh destroy ubuntuCloned
+virsh edit ubuntu20
+virsh start ubuntu20
+virsh console ubuntu20
+apt install stress
+virsh console ubuntu20
+virsh list --all
+virsh start --all
+virsh start ubuntu20
+virsh console ubuntu20
+virsh start ubuntuCloned
+free -m
+virsh console ubuntu20
+free -m
+virsh list --all
+virsh start newUbuntu
+virsh edit newUbuntu
+virsh start newUbuntu
+free -m
+virsh edit ubuntuCloned
+virsh start ubuntuCloned
+virsh edit ubuntuCloned
+virsh start ubuntuCloned
+free -m
+virsh console ubuntu20
+free -m
+virsh console newUbuntu
+free -m
+virsh vcpuinfo -d ubuntu20
+virsh vcpuinfo --domain ubuntu20
+virsh vcpuinfo --domain ubuntu20 --pretty
+virsh vcpuinfo --help
+virsh vcpuinfo --domain ubuntu20 0 2
+virsh vcpuinfo --domain ubuntu20 1 2
+virsh vcpuinfo --domain ubuntu20 0 1
+virsh vcpupin --domain ubuntu20 0 2
+virsh vcpuinfo --domain ubuntu20
+virsh vcpupin --domain ubuntu20 0 3
+virsh vcpuinfo --domain ubuntu20
+virsh vcpuinfo --domain ubuntu20 --prety
+virsh vcpuinfo --domain ubuntu20 --pretty
+virsh vcpupin --domain ubuntu20 1 2
+virsh vcpuinfo --domain ubuntu20 --pretty
+virsh vcpupin --domain ubuntu20 0 1-2
+virsh vcpuinfo --domain ubuntu20 --pretty
+virsh vcpupin --domain ubuntu20 0 2
+virsh vcpupin --domain ubuntu20 1 2
+virsh vcpuinfo --domain ubuntu20 --pretty
+virsh
+ls -la /var/lib/libvirt/qemu
+less /var/lib/libvirt/qemu/domain-69-ubuntuCloned/monitor.sock
+cat /var/lib/libvirt/qemu/domain-69-ubuntuCloned/monitor.sock
+virsh destroy ubuntuCloned
+virsh destroy ubuntu20
+virsh vncdisplay ubuntu
+virsh vncdisplay ubuntu20
+wget http://repo.iotti.biz/CentOS/7/x86_64/netperf-2.7.0-1.el7.lux.x86_64.rpm
+yum install netperf
+yum install netperf-2.7.0-1.el7.lux.x86_64.rpm
+netserver --help
+netserver -d -4 -v 2 -p 5000 -L 192.168.122.1
+netstat -vatnulp | grep -i 5000
+virsh start ubuntu
+virsh start ubuntu20
+virsh console ubuntu20
+fio --help
+man fio
+fio -size=5GB -direct=1 -rw=randrw -rwmixread=69 -bs=4K -ioengine=libaio -iodept                                                                    h=12 -runtime=1200   -numjobs=4 -time_based -group_reporting -name=my_production                                                                    _workload_profile
+df -h
+cd /kvm/disks
+du -sh *
+rm my_production_workload_profile*
+df -h
+virsh numatune --help
+numatune -s
+yum install numatune
+yum provides numatune
+virsh list --all
+virsh destroy ubuntu20
+qemu-img convert -f qcow2 -O vmdk /kvm/disks/ubuntu20.qcow2  ubuntuVmware.vmdk
+scp ubuntuVmware.vmdk 192.168.1.31:/vmfs/volumes/61c072fc-0c2a0a6e-2c03-000c29aa 
