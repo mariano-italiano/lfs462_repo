@@ -1,3 +1,41 @@
+yum install snapd
+ln -s /var/lib/snapd/snap /snap
+systemctl enable --now snapd.socket
+systemctl status snapd.socket
+systemctl status snapd.service
+systemctl enable snapd.service
+systemctl start snapd.service
+snap install lxd
+lxc list
+lxd init
+lxc image list images:
+lxc image list images: | grep -i centos
+lxc image list images: | egrep -i 'ubuntu|debian'
+lxc launch images:centos/7/amd64 centos-c7
+lxc launch images:centos/8/amd64 centos-db
+lxc list
+lxc start container-name
+lxc exec centos-db -- yum -y update
+lxc exec centos-c7 -- touch /root/plik1
+lxc exec centos-db bash
+lxc console cenots-c7
+lxc info cenots-c7
+lxc snapshot centos-c7 snap01 
+lxc snapshot centos-c7 snap02 --stateful 
+lxc info centos-c7
+lxc restore centos-c7 snap01
+lxc delete centos-c7/snap01
+lxc profile show default
+lxc profile create profilename
+lxc profile copy default custom
+lxc profile edit custom
+lxc config set centos8 boot.autostart true
+lxc config edit ubuntu
+lxc file push myfile centos8/tmp/
+lxc file pull centos8/tmp/ .
+lxc storage volume create default vol1 --type block
+lxc storage volume attach default vol1 ubuntu /dev/sdb
+lxc copy centos-db c2 --verbose
 lxc list
 cat lxd.config | lxd init --preseed
 cat /proc/partitions
