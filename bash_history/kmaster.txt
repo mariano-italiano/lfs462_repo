@@ -1,0 +1,44 @@
+kubectl cluster-info
+kubectl version --short
+kubectl get nodes
+kubectl get pods
+kubectl get pods -o wode
+kubectl get pods -o wide
+kubectl get
+kubectl get cs
+kubectl get nodes
+kubectl label node kworker1 node-role.kubernetes.io/worker=worker
+kubectl label node kworker2 node-role.kubernetes.io/worker=worker
+kubectl get nodes
+kubectl run nginx --image nginx
+kubectl get pods
+kubectl get pods -o wide
+kubectl run nginx2 --image nginx --replicas 2
+kubectl get pods -o wide
+kubectl scale deploy nginx --replicas 3
+kubectl create deploy web1 --image nginx
+kubectl get pods -o wide
+kubectl scale deploy web1 --replicas 3
+kubectl get pods -o wide
+kubectl expose deploy web1 --type NodePort --port 80
+kubectl describe service web1
+ip a
+kubectl get deploy web1 -o yaml
+kubectl get deploy web1 -o yaml > deploymentNginx.yaml
+vi deploymentNginx.yam
+vi deploymentNginx.yaml
+cat deploymentNginx.yaml | grep -i web1
+cat deploymentNginx.yaml | grep -i web1 -n
+vi deploymentNginx.yaml
+kubectl create -f deploymentNginx.ya
+kubectl get pods -o wide
+kubectl
+kubectl stop
+kubectl delete deploy web2
+kubectl delete deploy web1
+kubectl delete
+kubectl get pods -o wide
+kubectl delete nginx
+kubectl delete pod nginx
+kubectl delete pod nginx2
+kubectl get pods -o wide
