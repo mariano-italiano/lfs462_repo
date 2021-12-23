@@ -1,0 +1,58 @@
+dnf config-manager --add-repo=https://download.docker.com/linux/centos/docker-ce.repo
+dnf install docker-ce --nobest -y
+dnf install docker-ce --nobest -y --allowerasing
+systemctl enable ---now docker
+systemctl enable --now docker
+docker -v
+dnf install curl conntrack -y
+curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl
+chmod +x ./kubectl
+mv ./kubectl /usr/local/bin/kubectl
+kubectl version --client
+curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+chmod +x minikube
+install minikube /usr/local/bin/
+minikube start --driver=none
+minikube status
+kubectl cluster-info
+kubectl get nodes
+kubectl get pods
+kubectl get cs
+systemctl status firewalld.service
+vi /etc/kubernetes/manifests/kube-scheduler.yaml
+systemctl restart kubelet.service
+kubectl get cs
+kubectl get nodes
+kubectl create deployment test-pod --image=echoserver
+kubectl get pods
+kubectl get pods
+kubectl get pods -o wide
+kubectl get pods -o wide
+kubectl get pods -o wide
+kubectl create deployment test-pod --image=nginx
+kubectl create deployment web1 --image=nginx
+kubectl get pods -o wide
+docker ps -a
+kubectl get pods -o wide
+kubectl -h
+kubectl delete deploy test-pod
+kubectl get pods -o wide
+kubectl expose deploy web1 --type=NodePort --port=8088
+kubectl get pod
+minikube service web1 --url
+kubectl expose deploy web1 --type=NodePort --port=80
+kubectl create deployment web2 --image=nginx
+kubectl expose deploy web1 --type=NodePort --port=8088^C
+kubectl get services
+kubectl delete service web1
+kubectl expose deploy web1 --type=NodePort --port=80
+minikube service web1 --url
+kubectl get services
+kubectl get pod
+kubectl expose deploy web2 --type=NodePort --port=80
+minikube service web2 --url
+kubectl describe services web1
+kubectl describe services web2
+minikube addons list
+lxc list
+minikube dashboard --url
