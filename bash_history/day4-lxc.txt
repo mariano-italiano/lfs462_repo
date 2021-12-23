@@ -1,0 +1,39 @@
+lxc list
+cat lxd.config | lxd init --preseed
+cat /proc/partitions
+for i in `seq 0 32`; do echo "- - -" > /sys/class/scsi_host/host$i/scan; done
+cat /proc/partitions
+lxd init
+cat lxd.config | lxd init --preseed
+lxc list
+lxc import ubuntuBackup.tar.gz
+lxc import xenialBackup.tar.gz
+lxc list
+lxc storage volume hsow
+lxc storage volume show
+lxc storage volume create default vol1 --type block
+lxc storate volume list
+lxc storage volume show defaul
+lxc storage volume show default
+lxc storage volume show default vol1
+lxc storage show default
+lxc profile show default
+lxc profile show appProfile
+lxc list
+lxc import xenialBackup.tar.gz
+lxc storage list
+lxc storage volume show
+lxc storage volume list
+lxc storage volume list default
+lxc storage volume attach default vol1 xenial
+lxc list
+lxc edit xenialBackup.tar.gz
+lxc edit xenial
+lxc config edit xenial
+lxc list
+lxc start ubuntu
+lxc start xenial
+lxc list
+lxc config edit ubuntu
+lxc list
+lxc exec xenial bash
