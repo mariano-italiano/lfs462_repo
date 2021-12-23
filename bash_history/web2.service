@@ -1,0 +1,14 @@
+# /etc/systemd/system/web2.service
+
+[Unit]
+Description=My web container
+Requires=docker.service
+After=docker.service
+
+[Service]
+Restart=always
+ExecStart=/usr/bin/docker start -a webserver1
+ExecStop=/usr/bin/docker stop -t 2 webserver1
+
+[Insrtall]
+WantedBy=default.target
