@@ -1,0 +1,85 @@
+yum install epel-release
+yum install docker
+systemctl enable --now docker
+systemctl status docker
+docker ps -a
+docker search nginx
+docker search mariadb
+docker search mariadb --filter=stars=100
+docker search linux --filter=stars=100
+docker pull nginx
+docker images
+docker pull ubuntu
+docker images
+docker info
+docker run -it ubuntu:latest bash
+docker ps -a
+docker run -d -it ubuntu:latest
+docker ps -a
+docker ps
+docker exec -it unruffled_leavitt bash
+docker logs DISTRIB_RELEASE=20.04
+docker logs unruffled_leavitt
+docker ps -a
+docker logs 27e39c91af63
+docker logs 9f0c49501b65
+docker inspect unruffled_leavitt
+docker ps -a
+docker rm 9f0c49501b65
+docker ps -a
+docker rm 27e39c91af63
+docker rm 27e39c91af63 -f
+docker ps -a
+docker run -d --name web1 -p 8080:80 nginx
+docker ps -a
+docker exec web1 bash
+docker exec -it web1 bash
+ip a
+docker exec -it web1 bash
+docker ps -a
+docker stop web1
+docker ps -a
+docker start web1
+vi /var/www/html/
+ls /var/www/html/
+systemctl status httpd
+systemctl start httpd
+telnet localhost 80
+curl -v telnet://localhost:80
+vi /srv/index.html
+docker run --help
+docker run -d -it --name web2 --security-opt label=disable --cpu-shares 256 -m 256M --memory-reservation 200M nginx
+docker ps -a
+docker rm -f web2
+docker run -d -it --name web2 --security-opt label=disable --cpu-shares 256 -m 256M --memory-reservation 200M -v /srv:/srv nginx
+docker ps -a
+docker rm -f web2
+docker run -d -it --name web2 --security-opt label=disable --cpu-shares 256 -m 256M --memory-reservation 200M -v /srv:/srv -p 8081:80 nginx
+docker ps -a
+ls /srv/
+docker exec -it web2 bash
+cd /srv
+touch plik1
+vi plik1
+docker exec -it web2 bash
+cd
+docker ps -a
+find / -name sshd.service
+cp -rp /usr/lib/systemd/system/sshd.service /etc/systemd/system/web2.service
+docker ps -a
+docker stop web1
+docker stop web2
+docker ps -a
+vi /etc/systemd/system/web2.service
+which docker
+vi /etc/systemd/system/web2.service
+docker help
+vi /etc/systemd/system/web2.service
+systemctl daemon-reload
+docker ps -a
+systemctl start web2.service
+docker ps -a
+docker stop web2
+docker ps -a
+systemctl status web2.service
+systemctl enable web2
