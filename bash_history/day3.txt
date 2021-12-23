@@ -1,0 +1,144 @@
+uname -r
+yum install centos-release-xen -y
+yum update kernel -y
+yum install xen -y
+vi /etc/default/grub 
+which grub-bootxen.sh 
+bash `which grub-bootxen.sh`
+vi grub-bootxen.sh
+vi /usr/bin/grub-bootxen.sh
+reboot
+xl info
+xl list
+yum install libvirt libvirt-daemon-xen virt-install virt-manager tigervnc tigervnc-server 
+ip a 
+systemctl enable --now libvirtd
+ip a 
+systemctl status libvirtd
+ip a s
+ls -la /usr/lib64/xen/bin/qemu-system-i386 
+ls -la /usr/lib/xen/bin/qemu-system-i386 
+ln -s /usr/lib64/xen/bin/qemu-system-i386 /usr/lib/xen/bin/qemu-system-i386
+iptables -L -v
+find / -name xl.*
+vi /etc/xen/xl.conf
+cat /proc/partitions 
+pvcreate /dev/sdb
+vgcreate vgXen /dev/sdb
+lvcreate -l 100%FREE lvXen /dev/vgXen
+lvcreate -l 100%FREE -n lvXen /dev/vgXen
+lvs
+mkdir -p /xen/images
+mount /dev/vgXen/lvXen /xen/images
+mkfs.ext4 /dev/vgXen/lvXen
+mount /dev/vgXen/lvXen /xen/images
+vi /etc/fstab 
+mount -a
+df -h
+qemu-img create -f qcow2 -o preallocation=full /xen/images/ubuntu.qcow2 9G
+la -la /var/lib/libvirt/images/
+ls -la /var/lib/libvirt/images/
+virt-install -d --connect xen:/// --cdrom=/var/lib/libvirt/images/ubuntu-20.04.3-desktop-amd64.iso --disk=/xen/images/ubuntu.qcow2 --name ubuntu --ram 2048 --vcpus=2 --os-type linux --network bridge:virbr0 --console pty,target_type=virtio --hvm
+virt-install -d --connect xen:/// --cdrom=/var/lib/libvirt/images/ubuntu-20.04.3-desktop-amd64.iso --disk=/xen/images/ubuntu.qcow2 --name ubuntu --ram 2048 --vcpus=2 --os-type linux --network bridge:virbr0 --console pty,target_type=virtio 
+uname -a
+virt-install -d --connect xen:/// --cdrom=/var/lib/libvirt/images/ubuntu-20.04.3-desktop-amd64.iso --disk=/xen/images/ubuntu20.qcow2,size=9 --name ubuntu --ram 2048 --vcpus=2 --os-type linux --network bridge:virbr0 --console pty,target_type=virtio --hvm
+poweroff
+xl list
+xl console ubuntu
+wget http://www.tinycorelinux.net/12.x/x86/release/TinyCore-current.iso
+mv TinyCore-current.iso /var/lib/libvirt/images/
+xl list
+vi tinyCore.cfg
+rm /xen/images/u20.qcow2 
+cp -rp /xen/images/ubuntu.qcow2 /xen/images/u20.qcow2
+xl create u20.cfg
+virt-install -d --connect xen:/// --cdrom=/var/lib/libvirt/images/ubuntu-20.04.3-desktop-amd64.iso --disk=/xen/images/ubuntu.qcow2 --name ubuntu --ram 2048 --vcpus=2 --os-type linux --network bridge:virbr0 --console pty,target_type=virtio 
+virt-install -d --connect xen:/// --cdrom=/var/lib/libvirt/images/ubuntu-20.04.3-desktop-amd64.iso --disk=/xen/images/ubuntu.qcow2 --name ubuntu --ram 2048 --vcpus=2 --os-type linux --network bridge:virbr0 --console pty,target_type=virtio --hvm
+vi tinyCore.cfg 
+qemu-img create -f qcow2 /xen/images/tiny.qcow2 4G
+xl list
+xl create tinyCore.cfg
+vi tinyCore.cfg 
+xl create tinyCore.cfg
+xl list
+xl list tinyLinux
+xl list tinyLinux -l
+xl list -l tinyLinux 
+xl list -l ubuntu
+vncviewer 0.0.0.0:3
+vi tinyCore.cfg 
+xl create --help
+xl create -vvv tinyCore.cfg
+xl -vvv create tinyCore.cfg
+virsh dumpxml ubuntu 
+xl list
+virsh list --all
+xl shutdown ubuntu
+xl list
+xl list --all
+xl list all
+xl list 
+xl list -h
+xl list -l
+virsh list --all
+xl list
+virsh start ubuntu 
+xl list
+xl shutdown ubuntu
+xl list -v
+virsh start ubuntu
+xl list
+xl list -v
+virsh list --all
+cat /etc/default/grub 
+history
+ls -la /xen/images/
+virsh list --all
+virsh destroy ubuntu 
+cp -rp /xen/images/ubuntu.qcow2 /xen/images/ubuntu20.qcow2
+virt-install -d --connect xen:/// --disk=/xen/images/ubuntu20.qcow2 --import --name ubuntu20 --ram 2048 --vcpus=4 --os-type linux --network bridge:virbr0 --console pty,target_type=virtio --hvm
+virsh list --all
+xl console ubuntu20
+virsh -c xen:/// domxml-to-native ubuntu20 ubuntu20.xml
+virsh -c xen:/// domxml-to-native ubuntu20 
+virsh -c xen:/// domxml-to-native 
+virsh -c xen:/// domxml-to-native --format xen-xl 
+virsh -c xen:/// domxml-to-native --format xen-xl --domain ubuntu20
+clear
+ls -la /xen/images/
+virsh list --lal
+virsh list --all
+virsh -c xen:/// domxml-to-native --format xen-xl --domain ubuntu 
+cp -rp /xen/images/ubuntu.qcow2 /xen/images/u20.qcow2
+virsh -c xen:/// domxml-to-native --format xen-xl --domain ubuntu > u20.cfg
+vi u20.cfg
+xl create u20.cfg
+xl list
+xl start u20
+xl --help
+xl --h
+xl list
+xl console u20
+vi u20.cfg
+virsh list --all
+vi u20.cfg
+xl -vvv create u20.cfg 
+clear
+ls -la /tmp
+clear
+xl sched-credit --help
+xl sched-credit2 --help
+xl list
+virsh list --all
+xl sched-credit -d u20 300
+xl sched-credit2 -d u20 300
+xl sched-credit2 -d u20 400
+xl sched-credit2 -d u20 -w 300
+xl sched-credit2 -d u20 
+xl sched-credit2 -d u20 -c 60%
+xl sched-credit2 -d u20 
+xl sched-credit2 -d ubuntu -d 100 -c 50%
+xl sched-credit2 -d ubuntu -w 100 -c 50%
+xl sched-credit2 -d ubuntu 
+xl sched-credit2 -d u20
+xl sched-rtds  --help
